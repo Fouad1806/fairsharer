@@ -18,7 +18,18 @@ def fair_sharer(values, num_iterations, share=0.1):
         Integer to set the number of iterations
     """
     
+    for iteration in range(num_iterations):
+        max_value = max(values)
+        max_index = values.index(max_value)
+
+        shared_value = max_value * share
+        values[max_index - 1] += shared_value
+        values[max_index + 1] += shared_value
+        values[max_index] = max_value - (2 * shared_value)
+
+    return values
     
 
+print(fair_sharer([0, 1000, 800, 0], 1)) #--> [100, 800, 900, 0]
+print(fair_sharer([0, 1000, 800, 0], 2)) #--> [100, 890, 720, 90]
 
-    return values_new
